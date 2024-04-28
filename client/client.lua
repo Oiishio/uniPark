@@ -57,7 +57,6 @@ exports.ox_target:addGlobalVehicle({
 })
 
 function patikrintiBilietuka(carPlate)
-    print("Tr.Numeriai "..carPlate)
     TriggerServerEvent("uniPark:checkTicket", carPlate)
 end
 
