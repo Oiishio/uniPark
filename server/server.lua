@@ -17,14 +17,12 @@ AddEventHandler("uniPark:checkTicket", function(carPlate)
     local response = MySQL.query.await('SELECT `sData`, `pData`, `tPeriod`, `carPlate` FROM `unipark` WHERE `carPlate` = ?', {carPlate})
     local carPlatas = nil
     if response and #response > 0 then
-        print("cia")
         for i = 1, #response do
             local row = response[i]
             carPlatas = row.carPlate
             confirmValidity(xPlayer, checkTime(row.sData, row.pData), carPlatas, row.sData, row.tPeriod)
         end
     else
-        print("kitur")
         TriggerClientEvent("uniPark:invalidTicket", xPlayer, carPlate)
     end
 end)
@@ -37,7 +35,6 @@ end)
 RegisterNetEvent('uniPark:pay', function(input)
     local xPlayer = source
     local darbas = ESX.GetPlayerFromId(source).job.name
-    print(darbas)
     TriggerClientEvent('esx:showNotification', source, 'Jūs nesate mechanikas', 'error', 4000)
 	if not defaultPaymentMethod(xPlayer, Config.Price, input[1]) then return end
     TriggerEvent('uniPark:GiveTicket', xPlayer, input)
