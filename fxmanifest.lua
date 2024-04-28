@@ -13,8 +13,6 @@ server_scripts({
     'server/server.lua',
 });
 
-escrow_ignore ({'config.lua'})
-
 client_scripts({
     'config.lua',
     '@PolyZone/client.lua',
