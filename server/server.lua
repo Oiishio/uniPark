@@ -1,4 +1,23 @@
+lib.locale()
 ESX = exports["es_extended"]:getSharedObject()
+
+Oi = {}
+function Oi.ServerNotify(src, title, desc, type)
+    if Config.Notification == 'ox_lib' then
+    lib.notify( src, {
+        title = title,
+        description =  desc,
+        type = type
+    })
+elseif Config.Notification == 'okok' then
+    TriggerClientEvent('okokNotify:Alert', src, title, desc, 5000, type)
+elseif Config.Notification == 'custom' then
+    -- Your code
+else
+    print('Notification system not found please check config.lua ---> Config.Notification and make sure that notification system is correct')
+    return
+    end
+end
 
 RegisterNetEvent("uniPark:GiveTicket")
 AddEventHandler("uniPark:GiveTicket", function(xPlayer, input)
@@ -34,8 +53,6 @@ end)
 
 RegisterNetEvent('uniPark:pay', function(input)
     local xPlayer = source
-    local darbas = ESX.GetPlayerFromId(source).job.name
-    TriggerClientEvent('esx:showNotification', source, 'Jūs nesate mechanikas', 'error', 4000)
 	if not defaultPaymentMethod(xPlayer, Config.Price, input[1]) then return end
     TriggerEvent('uniPark:GiveTicket', xPlayer, input)
 end)
@@ -46,13 +63,9 @@ function defaultPaymentMethod(playerId, price, time)
 
 	if success then return true end
 
-	local money = exports.ox_inventory:GetItem(source, 'money', false, true)
+	local money = exports.ox_inventory:GetItem(playerId, 'money', false, true)
 
-	TriggerClientEvent('ox_lib:notify', source, {
-		type = 'error',
-        title = 'uniPark',
-		description = "Trūksta "..finalPrice.."€"
-	})
+    Oi.ServerNotify(playerId, locale("title"), locale("missing"):format(finalPrice), 'error')
 end
 
 function confirmValidity(xPlayer, valid, carPlate)

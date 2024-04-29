@@ -1,0 +1,9 @@
+{
+    "title": "uniPark",
+
+    "bought_suc": "You have successfully bought a ticket for a car with numbers: %s",
+    "found_ticket": "Ticket found with numbers: %s",
+    "expired": "Ticket with numbers: %s is not valid",
+    "invalid": "Ticket with numbers: %s does not exist",
+    "missing": "You short of: %s €"
+}

@@ -18,7 +18,6 @@ exports.ox_target:addModel(ParkingMeters, {
             {type = 'select', label = 'Valstybiniai numeriai', options =  carPlate, required = true},
             {type = 'date', disabled = true, label = 'Šiandienos data', icon = {'far', 'calendar'}, default = true, format = "DD/MM/YYYY"}
         })
-        print(input[2])
         if not input then return end
         carPlate = {}
         TriggerServerEvent("uniPark:pay", input)

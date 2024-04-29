@@ -1,0 +1,9 @@
+{
+    "title": "uniPark",
+
+    "bought_suc": "Sekmingai nusipirkote bilietuka, automobiliui su numeriais: %s",
+    "found_ticket": "Rastas bilietukas su numeriais: %s",
+    "expired": "Bilietukas su numeriais: %s negalioja",
+    "invalid": "Bilietukas su numeriais: %s neegzistuoja",
+    "missing": "Jums trūksta: %s €"
+}
